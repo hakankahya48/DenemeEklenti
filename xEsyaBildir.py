@@ -9,11 +9,12 @@ import json
 import os
 import time
 
-pName = 'xEsyaBildir'
-pVersion = '3.0'
-NewestVersion = '0'
+name = 'xEsyaBildir'
+version = 2.1
+NewestVersion = 0
 
-gui = QtBind.init(__name__, pName)
+gui = QtBind.init(__name__, name)
+
 tbxLeaders = QtBind.createLineEdit(gui,"",470,41,110,20)
 lstLeaders = QtBind.createList(gui,470,62,110,70)
 btnAddLeader = QtBind.createButton(gui,'btnAddLeader_clicked'," Lider Ekle ",581,39)
@@ -39,7 +40,7 @@ def btncard_clicked():
 	QtBind.append(gui,lstInfo,'- FGW8DG : Envanter, Pet ve Deponuzda bulunan 8DG FGW Kartlarını bildirir.\n- FGW9DG : Envanter, Pet ve Deponuzda bulunan 9DG FGW Kartlarını bildirir.\n- FGW10DG : Envanter, Pet ve Deponuzda bulunan 10DG FGW Kartlarını bildirir.\n- FGW11DG : Envanter, Pet ve Deponuzda bulunan 11DG FGW Kartlarını bildirir.')
 
 def getPath():
-    return get_config_dir() + pName + "\\"
+    return get_config_dir() + name + "\\"
 
 def getConfig():
     return getPath() + inGame['server'] + "_" + inGame['name'] + ".json"
@@ -949,7 +950,7 @@ def CheckForUpdate():
 						NewestVersion = int(lines[num+2].replace(".",""))
 						CurrentVersion = int(str(version).replace(".",""))
 						if NewestVersion > CurrentVersion:
-							log('Plugin: Asağıdakiler için bir güncelleme var [%s]!' % name)
+							log('Plugin: Yeni bir güncelleme mevcut [%s]!' % name)
 							lblUpdate = QtBind.createLabel(gui,'Mevcut bir Güncelleme Var, Güncellemek için Buraya Basın',100,283)
 							button1 = QtBind.createButton(gui, 'button_update', ' Eklentiyi Güncelle ', 350, 280)
 		except:
@@ -971,10 +972,13 @@ def button_update():
 			log('Güncelleme Hatası [%s] Lütfen Manuel Olarak Güncelleyin veya Daha Sonra Tekrar Deneyin.' %ex)
 
 CheckForUpdate()
-log("Plugin: "+pName+" v"+pVersion+" Yüklendi. // edit by hakankahya")
+
+log('Plugin: [%s] Versiyon %s Yüklendi. // edit by hakankahya' % (name,version))
 
 if os.path.exists(getPath()):
+	# Adding RELOAD plugin support
 	loadConfigs()
 else:
+	# Creating configs folder
 	os.makedirs(getPath())
-	log('Plugin: '+pName+' klasörü olusturuldu.')
+	log('Plugin: [%s] klasörü olusturuldu.')
