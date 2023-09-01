@@ -10,7 +10,7 @@ import os
 import time
 
 pName = 'xEsyaBildir'
-pVersion = '2.0'
+pVersion = '3.0'
 NewestVersion = '0'
 
 gui = QtBind.init(__name__, pName)
@@ -941,7 +941,7 @@ def CheckForUpdate():
 	#avoid request spam
 	if NewestVersion == 0:
 		try:
-			req = urllib.request.Request('https://raw.githubusercontent.com/hakankahya48/EklentiTRSRO/main/xEsyaBildir.py', headers={'User-Agent': 'Mozilla/5.0'})
+			req = urllib.request.Request('https://github.com/hakankahya48/DenemeEklenti/blob/main/xEsyaBildir.py', headers={'User-Agent': 'Mozilla/5.0'})
 			with urllib.request.urlopen(req) as f:
 				lines = str(f.read().decode("utf-8")).split()
 				for num, line in enumerate(lines):
@@ -960,7 +960,7 @@ def button_update():
 	if os.path.exists(path + "Plugins/" + "xEsyaBildir.py"):
 		try:
 			os.rename(path + "Plugins/" + "xEsyaBildir.py", path + "Plugins/" + "xEsyaBildirYEDEK.py")
-			req = urllib.request.Request('https://raw.githubusercontent.com/hakankahya48/EklentiTRSRO/main/xEsyaBildir.py', headers={'User-Agent': 'Mozilla/5.0'})
+			req = urllib.request.Request('https://github.com/hakankahya48/DenemeEklenti/blob/main/xEsyaBildir.py', headers={'User-Agent': 'Mozilla/5.0'})
 			with urllib.request.urlopen(req) as f:
 				lines = str(f.read().decode("utf-8"))
 				with open(path + "Plugins/" + "xEsyaBildir.py", "w+") as f:
