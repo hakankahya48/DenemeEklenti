@@ -943,7 +943,7 @@ def CheckForUpdate():
 	#avoid request spam
 	if NewestVersion == 0:
 		try:
-			req = urllib.request.Request('https://raw.githubusercontent.com/Bunker141/Phbot-Plugins/master/AutoCursed.py', headers={'User-Agent': 'Mozilla/5.0'})
+			req = urllib.request.Request('https://github.com/hakankahya48/DenemeEklenti/blob/main/EsyaBildir.py', headers={'User-Agent': 'Mozilla/5.0'})
 			with urllib.request.urlopen(req) as f:
 				lines = str(f.read().decode("utf-8")).split()
 				for num, line in enumerate(lines):
@@ -951,27 +951,27 @@ def CheckForUpdate():
 						NewestVersion = int(lines[num+2].replace(".",""))
 						CurrentVersion = int(str(version).replace(".",""))
 						if NewestVersion > CurrentVersion:
-							log('Plugin: There is an update avaliable for [%s]!' % name)
-							lblUpdate = QtBind.createLabel(gui,'There is an Update Avaliable, Press Here to Update',100,283)
-							button1 = QtBind.createButton(gui, 'button_update', ' Update Plugin ', 350, 280)
+							log('Plugin: Yeni bir güncelleme var = [%s]!' % name)
+							lblUpdate = QtBind.createLabel(gui,'Mevcut bir Güncelleme Var, Güncellemek için Buraya Basın',100,283)
+							button1 = QtBind.createButton(gui, 'button_update', ' Eklentiyi Güncelle ', 350, 280)
 		except:
 			pass
 
 
 def button_update():
 	path = get_config_dir()[:-7]
-	if os.path.exists(path + "Plugins/" + "AutoCursed.py"):
+	if os.path.exists(path + "Plugins/" + "EsyaBildir.py"):
 		try:
-			os.rename(path + "Plugins/" + "AutoCursed.py", path + "Plugins/" + "AutoCursedBACKUP.py")
-			req = urllib.request.Request('https://raw.githubusercontent.com/Bunker141/Phbot-Plugins/master/AutoCursed.py', headers={'User-Agent': 'Mozilla/5.0'})
+			os.rename(path + "Plugins/" + "EsyaBildir.py", path + "Plugins/" + "EsyaBildirBACKUP.py")
+			req = urllib.request.Request('https://github.com/hakankahya48/DenemeEklenti/blob/main/EsyaBildir.py', headers={'User-Agent': 'Mozilla/5.0'})
 			with urllib.request.urlopen(req) as f:
 				lines = str(f.read().decode("utf-8"))
-				with open(path + "Plugins/" + "AutoCursed.py", "w+") as f:
+				with open(path + "Plugins/" + "EsyaBildir.py", "w+") as f:
 					f.write(lines)
-					os.remove(path + "Plugins/" + "AutoCursedBACKUP.py")
-					log('Plugin Successfully Updated, Please Reload the Plugin to Use')
+					os.remove(path + "Plugins/" + "EsyaBildirBACKUP.py")
+					log('Plugin Başarıyla Güncellendi, Kullanmak için Eklentiyi Yeniden Yükleyin.')
 		except Exception as ex:
-			log('Error Updating [%s] Please Update Manually or Try Again Later' %ex)
+			log('Güncelleme Hatası [%s] Lütfen Manuel Olarak Güncelleyin veya daha Sonra Tekrar Deneyin.' %ex)
 
 
 
